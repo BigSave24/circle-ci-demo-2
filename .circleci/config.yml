@@ -11,10 +11,9 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: mkdir -p my_workspace
-      - run: echo "test text for circleCI output" > my_workspace/output.txt
+      - run: echo "test text for circleCI output" > ~/output.txt
       - persist_to_workspace:
-          root: my_workspace
+          root: ~/
           paths:
             - output.txt
   print_output_file:
@@ -23,8 +22,8 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: my_workspace
-      - run: cat output.txt
+          at: ~/
+      - run: cat ~/output.txt
 workflows:
   # Name the workflow "welcome"
   welcome:
