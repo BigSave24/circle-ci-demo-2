@@ -40,6 +40,14 @@ jobs:
     steps:
       - print_pipeline_id:
           to: $CIRCLE_WORKFLOW_ID
+  print_test_error:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: return 1
+      - run: echo "Job Failure Alert"
+          when: on_fail
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -51,4 +59,5 @@ workflows:
           requires:
             - save_hello_world_output
       - print_output_pipeline_id
+      - print_test_error
       
