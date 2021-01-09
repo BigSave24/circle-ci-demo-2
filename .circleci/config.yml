@@ -46,7 +46,9 @@ jobs:
     steps:
       - checkout
       - run: return 1
-      - run: echo "Job Failure Alert"
+      - run:
+          name: Print Failure Alert
+          command: echo "Job Failure Alert"
           when: on_fail
 workflows:
   # Name the workflow "welcome"
